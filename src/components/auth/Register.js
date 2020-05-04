@@ -8,11 +8,13 @@ class App extends Component {
         this.state = {
             email: "",
             password: "",
-            name: ""
+            name: "",
+            checkbox: false,
 
         }
         this.change = this.change.bind(this);
         this.submit = this.submit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         console.log(this.props);
 
     }
@@ -24,15 +26,29 @@ class App extends Component {
         })
     }
 
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.name === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        console.log(name, value);
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state)
+    }
+
+
 
     submit(e) {
         e.preventDefault();
         const url = "http://localhost:8000/auth/register";
+        console.log(this.state);
         axios.post(
             url, {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            createperm: this.state.checkbox
         }).then(res => {
             console.log("created user successfully");
             window.location.replace('/');
@@ -41,7 +57,10 @@ class App extends Component {
         })
 
 
+
+
     }
+
 
     render() {
         return (
@@ -51,6 +70,7 @@ class App extends Component {
                         <label>Name</label>    <input type="text" name="name" onChange={this.change} value={this.state.name} /><br /><br />
                         <label>Email</label>    <input type="text" name="email" onChange={this.change} value={this.state.email} /><br /><br />
                         <label>Password</label>  <input type="password" name="password" onChange={this.change} value={this.state.password} /><br /><br />
+                        <label>Wanna create blogs</label>  <input type="checkbox" name="checkbox" onChange={this.handleInputChange} value={this.state.checkbox} /><br /><br />
 
                         <button >Login</button>
                     </div>

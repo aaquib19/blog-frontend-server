@@ -57,6 +57,15 @@ class App extends Component {
 
     render() {
         // console.log(this.props.user.id);
+        console.log(this.props.user);
+        if (this.props.user.createperm !== true) {
+            // window.alert("you cannot create blogs")
+            return (
+                <h1>you dont have permision to create</h1>
+            )
+            // window.location.replace('/');
+
+        }
 
         return (
             <div>
