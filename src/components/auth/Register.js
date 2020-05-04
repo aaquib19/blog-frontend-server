@@ -41,7 +41,7 @@ class App extends Component {
 
     submit(e) {
         e.preventDefault();
-        const url = "http://localhost:8000/auth/register";
+        const url = "/auth/register";
         console.log(this.state);
         axios.post(
             url, {
