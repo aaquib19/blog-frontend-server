@@ -7,6 +7,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import AddBlog from "./components/blogs/AddBlog";
 import Blogs from "./components/blogs/Blogs";
+import Profile from "./components/profile/Profile";
 import UpdateBlog from "./components/blogs/UpdateBlog";
 import AuthenticateComponent from './components/auth/AuthenticateComponent';
 
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/" component={Home} ></Route>
         <Route exact path="/login" component={Login} ></Route>
         <Route exact path="/register" component={Register} ></Route>
+        <Route exact path='/profile/:id' render={(props) => <AuthenticateComponent customcomponent={Profile} {...props} />} />
 
         <Route exact path='/update/:id' render={(props) => <AuthenticateComponent customcomponent={UpdateBlog} {...props} />} />
         <Route exact path='/create' render={(props) => <AuthenticateComponent customcomponent={AddBlog}{...props} />} />

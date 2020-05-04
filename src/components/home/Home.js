@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import { getJwt } from '../../helpers/jwt';
 
 class App extends Component {
     constructor(props) {
@@ -9,10 +10,19 @@ class App extends Component {
 
 
         this.state = {
+            user: undefined,
             blogs: []
 
         }
 
+        this.handleLogout = this.handleLogout.bind(this);
+
+
+    }
+    handleLogout() {
+        console.log("Logout");
+        localStorage.removeItem('cool-jwt');
+        window.location.replace('/login');
     }
     async componentDidMount() {
         const url = "/blogs";
@@ -22,6 +32,32 @@ class App extends Component {
             blogs: res.data
         })
 
+
+        //getting user
+        const jwt = getJwt();
+        console.log(jwt);
+        if (!jwt) {
+
+        }
+        else {
+            // conso
+            const url_ = "/auth/test"
+            try {
+                const res = await axios.get(url_, {
+                    headers: {
+                        Authorization: jwt
+                    }
+                });
+                this.setState({
+                    user: res.data.user
+                })
+
+            }
+            catch (err) {
+                console.log(err);
+                localStorage.removeItem('cool-jwt');
+            }
+        }
     }
 
 
@@ -29,8 +65,19 @@ class App extends Component {
 
 
     render() {
-        const { blogs } = this.state;
-        console.log(this.props)
+        const { blogs, user } = this.state;
+        console.log(blogs)
+        console.log("user ==", user)
+        let userLink = "";
+        let logoutLink = "";
+        if (user) {
+            userLink = (
+                <Link to={`/profile/${user.id}`}>{user.name}</Link>
+            )
+                ;
+
+            logoutLink = <button onClick={this.handleLogout}>Logout</button>
+        }
         if (blogs.length === 0) {
             return (
                 <div>Loading ... </div>
@@ -38,6 +85,8 @@ class App extends Component {
         }
         return (
             <div>
+                {userLink}
+                {logoutLink}
                 <div>
                     <Link to="/login">Login</Link>
                     <hr></hr>
