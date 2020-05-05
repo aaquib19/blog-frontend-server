@@ -1,17 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { getJwt } from '../../helpers/jwt';
-import {
-    MDBRow,
-    MDBCard,
-    MDBCol,
-    MDBInput,
-    MDBCardBody,
-    MDBIcon,
-    MDBBtn,
-    MDBModalFooter
-} from "mdbreact";
+
 
 
 class App extends Component {
@@ -32,19 +23,19 @@ class App extends Component {
     }
 
     async componentDidMount() {
-        console.log("component mounting")
+        // console.log("component mounting")
         const url = "/blogs";
         const res = await axios.get(url);
-        console.log(res);
+        // console.log(res);
         this.setState({
             blogs: res.data
         })
-        console.log("blogs updated")
+        // console.log("blogs updated")
 
 
         //getting user
         const jwt = getJwt();
-        console.log(jwt);
+        // console.log(jwt);
         if (!jwt) {
 
         }
@@ -80,7 +71,7 @@ class App extends Component {
 
     render() {
         const { blogs, user } = this.state;
-        console.log(blogs)
+        // console.log(blogs)
         // console.log("user ==", user)
         let userLink = "";
         let logoutLink = "";

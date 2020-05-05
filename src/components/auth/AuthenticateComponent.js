@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React, { Component } from 'react';
 import { getJwt } from '../../helpers/jwt';
 import axios from 'axios';
 class AuthenticateComponent extends Component {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { getJwt } from '../../helpers/jwt';
-import { Link } from 'react-router-dom'
 
 class App extends Component {
     constructor(props) {
