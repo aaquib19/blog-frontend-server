@@ -1,7 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { getJwt } from '../../helpers/jwt';
+import {
+    MDBRow,
+    MDBCard,
+    MDBCol,
+    MDBInput,
+    MDBCardBody,
+    MDBIcon,
+    MDBBtn,
+    MDBModalFooter
+} from "mdbreact";
+
 
 class App extends Component {
     constructor(props) {
@@ -87,7 +98,8 @@ class App extends Component {
             )
         }
         return (
-            <div>
+
+            <div className="main">
                 {userLink}
                 {logoutLink}
                 <div>
