@@ -107,11 +107,16 @@ class Navbar extends Component {
                     <MDBNavbarNav right>
                         {/* <MDBNavItem>
                             <MDBNavLink to='/login'>Login</MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBNavLink to='/register'>register</MDBNavLink>
                         </MDBNavItem> */}
+                        <MDBNavItem>
+                            <MDBNavLink to="#">
+                                <Fragment>{this.state.user ? <strong>Hello {this.state.user.name}</strong> : ""}</Fragment>
+                            </MDBNavLink>
+                        </MDBNavItem>
+
                         <Fragment>{this.state.user ? authLinks : guestLinks}</Fragment>
+
+
 
                     </MDBNavbarNav>
                 </MDBCollapse>
