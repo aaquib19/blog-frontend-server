@@ -19,18 +19,16 @@ class App extends Component {
 
 
     }
-    handleLogout() {
-        console.log("Logout");
-        localStorage.removeItem('cool-jwt');
-        window.location.replace('/login');
-    }
+
     async componentDidMount() {
+        console.log("component mounting")
         const url = "/blogs";
         const res = await axios.get(url);
         console.log(res);
         this.setState({
             blogs: res.data
         })
+        console.log("blogs updated")
 
 
         //getting user
@@ -59,6 +57,11 @@ class App extends Component {
             }
         }
     }
+    handleLogout() {
+        console.log("Logout");
+        localStorage.removeItem('cool-jwt');
+        window.location.replace('/login');
+    }
 
 
 
@@ -67,12 +70,12 @@ class App extends Component {
     render() {
         const { blogs, user } = this.state;
         console.log(blogs)
-        console.log("user ==", user)
+        // console.log("user ==", user)
         let userLink = "";
         let logoutLink = "";
         if (user) {
             userLink = (
-                <Link to={`/profile/${user.id}`}>{user.name}</Link>
+                <Link to="/profile/">{user.name}</Link>
             )
                 ;
 

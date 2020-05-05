@@ -19,7 +19,7 @@ function App() {
         <Route exact path="/" component={Home} ></Route>
         <Route exact path="/login" component={Login} ></Route>
         <Route exact path="/register" component={Register} ></Route>
-        <Route exact path='/profile/:id' render={(props) => <AuthenticateComponent customcomponent={Profile} {...props} />} />
+        <Route exact path='/profile/' render={(props) => <AuthenticateComponent customcomponent={Profile} {...props} />} />
 
         <Route exact path='/update/:id' render={(props) => <AuthenticateComponent customcomponent={UpdateBlog} {...props} />} />
         <Route exact path='/create' render={(props) => <AuthenticateComponent customcomponent={AddBlog}{...props} />} />
